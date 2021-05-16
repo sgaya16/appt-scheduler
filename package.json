@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "firebase": "^8.6.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.3",
+    "mocha": "^8.4.0"
+  }
+}
