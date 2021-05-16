@@ -1,0 +1,48 @@
+@media all and (min-width: 480px) {
+    .Home {
+      margin: 0 auto;
+      max-width: 800px;
+    }
+    .Home h3 {
+        padding: 0 0 16px 0;
+    }
+    .Home ListGroup {
+        position: relative;
+    }
+    .Home Button {
+        padding: 4px 4px 4px 4px;
+        margin: 4px 4px 4px 4px;
+        position: absolute;
+    }
+    .Home .approveBtn {
+        right: 80px;
+        top: 40px;
+    }
+    .Home .denyBtn {
+        right: 20px;
+        top: 40px;
+    }
+    .Home .subtitle {
+        padding: 12px 8px 8px 8px;
+    }
+    .Home .pending {
+        background-color: #d3d3d3;
+        font-size: 0.8rem;
+        padding: 4px 4px 4px 4px;
+        border-radius: 2px;
+    }
+    .Home .approved {
+        background-color: green;
+        color: white;
+        font-size: 0.8rem;
+        padding: 4px 4px 4px 4px;
+        border-radius: 2px;
+    }
+    .Home .denied {
+        background-color: red;
+        color: white;
+        font-size: 0.8rem;
+        padding: 4px 4px 4px 4px;
+        border-radius: 2px;
+    }
+  }

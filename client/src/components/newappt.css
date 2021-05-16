@@ -1,0 +1,16 @@
+@media all and (min-width: 480px) {
+    .NewAppt {
+      padding: 60px 0;
+    }
+  
+    .NewAppt form {
+      margin: 0 auto;
+      max-width: 320px;
+    }
+
+    .NewAppt .confirmation {
+        margin: 0 auto;
+        max-width: 320px;
+        text-align: center;
+      }
+  }
