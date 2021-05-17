@@ -9,8 +9,8 @@ import Home from './components/home.js';
 import Appt from './components/appt.js';
 
 function App() {
-  return ( 
 
+  return ( 
     <Router>
       <div className="App container py-3">
         <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">

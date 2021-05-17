@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { ListGroup, Button } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 import { CalendarPlus } from 'react-bootstrap-icons';
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import './home.css';
 
 export default function Home() {
     const [appts, setAppts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const history = useHistory();
 
     useEffect(() => {
         async function onLoad() {
@@ -34,8 +36,7 @@ export default function Home() {
             axios.defaults.headers.common["Authorization"] = authToken;
             const reqs = await axios.get("/appts");
             const apps = await axios.get("/appts/approve");
-            //console.log("req appts: " + reqs.data);
-            //console.log("approve appts: " + apps.data);
+
             let allAppts = [];
             if(reqs && apps) {
                 allAppts = reqs.data.concat(apps.data);
@@ -50,6 +51,9 @@ export default function Home() {
         }
         catch(err) {
             console.log(err);
+            if(err.response.status === 403) {
+                history.push("/")
+            }
         }
     }
 
@@ -81,6 +85,9 @@ export default function Home() {
         }
         catch(err) {
             console.error(err);
+            if(err.response.status === 403) {
+                history.push("/")
+            }
         }
     }
 

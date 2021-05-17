@@ -8,21 +8,30 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "test": "mocha --reporter spec"
+    "test": "mocha tests/test.js"
   },
+  "presets": [
+    "@babel/preset-env"
+  ],
   "engines": {
     "node": "12"
   },
   "main": "index.js",
   "dependencies": {
+    "assert": "^2.0.0",
     "express": "^4.17.1",
     "firebase-admin": "^9.8.0",
-    "firebase-functions": "^3.11.0"
+    "firebase-functions": "^3.14.0",
+    "firebase-tools": "^9.10.2"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.2",
+    "@firebase/testing": "^0.20.11",
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.6.0",
     "eslint-config-google": "^0.14.0",
-    "firebase-functions-test": "^0.2.0"
+    "firebase-functions-test": "^0.2.3",
+    "mocha": "^8.4.0"
   },
   "private": true
 }

@@ -36,7 +36,6 @@ export default function NewAppt() {
             //console.log(authToken);
             axios.defaults.headers.common["Authorization"] = authToken;
             const approverInfo = await axios.get(`/user/${fields.approver}`);
-            //console.log(approverInfo.data);
             
             const newAppt = {
                 requester: userEmail,
@@ -50,6 +49,7 @@ export default function NewAppt() {
 
             const response = await axios.post("/newappt", newAppt);
             console.log("new appt with id: " + response.data.id);
+            
             setPosted(true);
             setIsLoading(false);
         }
@@ -57,6 +57,9 @@ export default function NewAppt() {
             console.error(err);
             errors.push("Problem adding new appointment");
             setIsLoading(false);
+            if(err.response.status === 403) {
+                history.push("/")
+            }
         }
     };
 
