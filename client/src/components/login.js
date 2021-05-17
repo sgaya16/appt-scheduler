@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import LoaderButton from "../components/loaderbutton.js";
 import { useHistory } from "react-router-dom";
 import { useFormFields } from "../libs/hooksLib.js";
@@ -84,7 +84,16 @@ export default function Login() {
                 disabled={!validateForm()}
             >
                 Login
-            </LoaderButton>            
+            </LoaderButton>  
+            <p>
+                Don't have an account? 
+                <Button 
+                    variant="link"
+                    href="/signup"
+                >
+                    Sign up.
+                </Button>
+            </p>         
           </Form>
       </div>  
     );
