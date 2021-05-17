@@ -85,9 +85,6 @@ export default function Home() {
         }
         catch(err) {
             console.error(err);
-            if(err.response.status === 403) {
-                history.push("/")
-            }
         }
     }
 
@@ -103,45 +100,6 @@ export default function Home() {
                     <span className="ml-2 font-weight-bold">Schedule new appointment</span>
                     </ListGroup.Item>
                 </LinkContainer>
-
-                <h4 className="subtitle">All Appointments</h4>
-                {appts.length > 0 &&
-                appts.map((appt) => (
-                    <LinkContainer key={appt.id} to={`/appt/${appt.id}`}>
-                    <ListGroup.Item action>
-                        {/*console.log("pending: " + appt.pending + " approved: " + appt.approved)*/}
-                        <span className="font-weight-bold">
-                        Appointment Date: {new Date(appt.date + " " + appt.time).toLocaleString()}
-                        </span>
-                        <br />
-                        <span className="">
-                            {/*console.log(getApproverName(appt.approver))*/}
-                            With: {appt.requester === userEmail ? appt.approver : appt.requester}
-                        </span>
-                        <br />
-                        <span className="text-muted">
-                            Created: {new Date(appt.createdAt).toLocaleString()}
-                        </span>
-                        <br />
-                        {(appt.pending && !appt.approved) &&
-                            <span className="text-muted pending">
-                                Pending approval
-                            </span>
-                        }
-                        {(!appt.pending && !appt.approved ) &&
-                            <span className="denied">
-                                Denied
-                            </span>
-                        }
-                        {(!appt.pending && appt.approved) &&
-                            <span className="approved">
-                                Approved
-                            </span>
-                        }
-                        <br />
-                    </ListGroup.Item>
-                    </LinkContainer>
-                ))}
 
                 <h4 className="subtitle">Appointments for Approval</h4>
                     {appts.length > 0 &&
@@ -183,6 +141,45 @@ export default function Home() {
                             </LinkContainer>
                         );
                     })}
+
+                    <h4 className="subtitle">All Appointments</h4>
+                {appts.length > 0 &&
+                appts.map((appt) => (
+                    <LinkContainer key={appt.id} to={`/appt/${appt.id}`}>
+                    <ListGroup.Item action>
+                        {/*console.log("pending: " + appt.pending + " approved: " + appt.approved)*/}
+                        <span className="font-weight-bold">
+                        Appointment Date: {new Date(appt.date + " " + appt.time).toLocaleString()}
+                        </span>
+                        <br />
+                        <span className="">
+                            {/*console.log(getApproverName(appt.approver))*/}
+                            With: {appt.requester === userEmail ? appt.approver : appt.requester}
+                        </span>
+                        <br />
+                        <span className="text-muted">
+                            Created: {new Date(appt.createdAt).toLocaleString()}
+                        </span>
+                        <br />
+                        {(appt.pending && !appt.approved) &&
+                            <span className="text-muted pending">
+                                Pending approval
+                            </span>
+                        }
+                        {(!appt.pending && !appt.approved ) &&
+                            <span className="denied">
+                                Denied
+                            </span>
+                        }
+                        {(!appt.pending && appt.approved) &&
+                            <span className="approved">
+                                Approved
+                            </span>
+                        }
+                        <br />
+                    </ListGroup.Item>
+                    </LinkContainer>
+                ))}    
             </div>
         ); 
     };
