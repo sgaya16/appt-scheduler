@@ -24,7 +24,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000/pocket-rn-assignment-8be6b/us-central1/api",
+  "proxy": "http://localhost:5001/pocket-rn-assignment-8be6b/us-central1/api",
   "eslintConfig": {
     "extends": [
       "react-app"
