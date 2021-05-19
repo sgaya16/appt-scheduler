@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
+import AsyncSelect from 'react-select';
 import LoaderButton from "../components/loaderbutton.js";
 import { useFormFields } from "../libs/hooksLib.js";
 import axios from 'axios';
@@ -13,9 +14,28 @@ export default function NewAppt() {
         approver: "",
     });
     const [posted, setPosted] = useState(false);
+    const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
     const history = useHistory();
+
+    useEffect(() => {
+        const authToken = localStorage.getItem("AuthToken");
+        axios.defaults.headers.common["Authorization"] = authToken;
+        const userEmail = localStorage.getItem("UserEmail");
+        axios.get("/users")
+        .then(res => {
+            res.data.forEach((doc) => {
+                if(doc.email !== userEmail) {
+                    setUsers(old => [...old, {label: doc.name, value: doc}]);
+                }
+            });
+        });
+    }, []);
+
+    function handleApproverInput(event) {
+        fields.approver = event.label;
+    }
 
     function validateForm() {
         if(fields.date.length === 0 || fields.time.length === 0 || fields.date.approver === 0) {
@@ -95,16 +115,32 @@ export default function NewAppt() {
                     />
                 </Form.Group>
 
-                <Form.Group controlId="approver" size="s">
+               {/*<Form.Group controlId="approver" size="s">
                     <Form.Label>Meeting With:</Form.Label>
                     <Form.Control 
+                        as="select"
                         autoFocus
                         type="approver"
                         placeholder="John Smith"
                         value={fields.approver}
                         onChange={handleFieldChanges}
-                    />
-                </Form.Group>
+                        onClick={handleFieldChanges}
+                    >
+                    {users.length > 0 &&
+                        users.forEach((user) => {
+                            <option>{user.label}</option>
+                        })
+                    }
+                    </Form.Control>
+                </Form.Group> */}
+
+                <Form.Label>Meeting With:</Form.Label>
+                <AsyncSelect
+                name="approver"
+                options={users}
+                onChange={handleApproverInput}
+                />
+                <Form.Label />
 
                 <LoaderButton
                     block

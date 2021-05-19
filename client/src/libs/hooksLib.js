@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-computed-key */
 import { useState } from "react";
 
 export function useFormFields(initialState) {

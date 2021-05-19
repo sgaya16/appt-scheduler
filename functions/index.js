@@ -13,7 +13,7 @@ const auth = require("./util/auth.js");
 const app = express();
 
 const { getAppointment, getAllAppointmentsByRequester, getAllAppointmentsByApprover, getAllApprovedAppointments, postAppointment, deleteAppointment, updateAppointment } = require("./API/schedule.js");
-const { loginUser, signUpUser, getUserInfo, getUserFromName, getUserFromEmail, updateUserInfo } = require("./API/users.js");
+const { loginUser, signUpUser, getUserInfo, getAllUsers, getUserFromName, getUserFromEmail, updateUserInfo } = require("./API/users.js");
 
 //routes for appointments API
 app.get("/appts", auth, getAllAppointmentsByRequester);
@@ -28,6 +28,7 @@ app.put("/appt/:apptId", auth, updateAppointment);
 app.post("/login", loginUser);
 app.post("/signup", signUpUser);
 app.get("/user", auth, getUserInfo);
+app.get("/users", auth, getAllUsers);
 app.get("/user/:userName", auth, getUserFromName);
 app.get("/user/:userEmail", auth, getUserFromEmail);
 app.put("/user", auth, updateUserInfo);

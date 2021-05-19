@@ -118,6 +118,30 @@ exports.getUserInfo = (req, res) => {
     });
 };
 
+exports.getAllUsers = (req, res) => {
+    fireDatabase
+    .collection("users")
+    .orderBy("name", "asc")
+    .get()
+    .then((data) => {
+        let users = [];
+        data.forEach((document) => {
+            users.push({
+                id: document.id,
+                name: document.data().name,
+                email: document.data().email,
+                userId: document.data().userId,
+                createdAt: document.data().createdAt,
+            });
+        });
+        return res.json(users);
+    })
+    .catch((err) => {
+        console.error(err);
+        return res.status(500).json({ error: err.code });
+    });
+};
+
 exports.getUserFromName = (req, res) => {
     let userInfo = {};
     //console.log(req.params.userName);

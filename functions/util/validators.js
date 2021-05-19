@@ -63,7 +63,6 @@ exports.validateSignUp = (data) => {
     if(data.password !== data.confirmPassword) {
         errors.confirmPassword = "passwords must match";
     }
-
     return {
 		errors,
 		valid: Object.keys(errors).length === 0 ? true : false,
