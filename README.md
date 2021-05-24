@@ -6,11 +6,11 @@ If a user receives an appointment request, they can either accept or reject the 
 ## Getting Started
 ### Installing the project
 
--clone the project repository to your computer and access the project directory from the command line
+- clone the project repository to your computer and access the project directory from the command line
 
 #### Firebase back end
 
--to build the firebase back end in the root directory:
+- to build the firebase back end in the root directory:
 
 ```
 npm install 
@@ -22,15 +22,15 @@ firebase serve
 ```
 #### React front end
 
--Enter the client directory in the project
+- Enter the client directory in the project
 
--to build the React front end in the client directory:
+- to build the React front end in the client directory:
 
 ```
 npm install 
 ```
 
--to run the firebase back end locally:
+- to run the firebase back end locally:
 
 ```
 npm start
